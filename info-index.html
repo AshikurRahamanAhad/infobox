@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Info Form</title>
+  <style>
+    /* ===== CSS Styles ===== */
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #f0f4ff, #d9e4ff);
+        padding: 40px;
+        margin: 0;
+    }
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    form {
+        background: #fff;
+        max-width: 450px;
+        margin: auto;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+        width: 100%;
+        padding: 10px 12px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 15px;
+        box-sizing: border-box;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    input:focus, textarea:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 5px rgba(76,175,80,0.5);
+        outline: none;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+        margin-top: 10px;
+        transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+        background-color: #45a049;
+        transform: scale(1.03);
+    }
+    button:active {
+        transform: scale(0.97);
+    }
+  </style>
+</head>
+<body>
+
+  <h2>User Info Form</h2>
+
+  <form id="userForm">
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="tel" id="phone" placeholder="Phone (+country code)" required>
+    <input type="number" id="age" placeholder="Age" required>
+    <input type="text" id="address" placeholder="Local Address" required>
+    <input type="text" id="country" placeholder="Country" required>
+    <textarea id="comment" placeholder="Comment (optional)"></textarea>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    /* ===== JavaScript ===== */
+    const webhookURL = "https://discordapp.com/api/webhooks/1411977612380864513/AgWOtsBWnzhlAWhUDzcEcI2xqANTW5fxCS5L3AVUfJNSHaifk-fujlFt8FmHLV7MPMZL"; // replace with your webhook
+
+    document.getElementById("userForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // prevent page reload
+
+      // Get input values
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const age = document.getElementById("age").value;
+      const address = document.getElementById("address").value;
+      const country = document.getElementById("country").value;
+      const comment = document.getElementById("comment").value || "No comment";
+
+      // Create Discord message
+      const discordMessage = `
+**New User Submitted Info**
+- Name: ${name}
+- Email: ${email}
+- Phone: ${phone}
+- Age: ${age}
+- Address: ${address}
+- Country: ${country}
+- Comment: ${comment}
+`;
+
+      // Send to Discord webhook
+      fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: discordMessage })
+      })
+      .then(res => {
+        if (res.ok) {
+          alert("Form submitted successfully!");
+          document.getElementById("userForm").reset();
+        } else {
+          alert("Failed to send info. Check webhook URL.");
+        }
+      })
+      .catch(err => {
+        console.error("Error:", err);
+        alert("Error sending info.");
+      });
+    });
+  </script>
+</body>
+</html>
