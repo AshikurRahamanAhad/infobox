@@ -27,7 +27,6 @@ I am actively learning **JavaScript** and the **MERN stack (MongoDB, Express.js,
 [![X](https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/ashikur_ahad)
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/ashikur_rahaman_ahad)
 [![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/ashikurrahaman.ahadhossenii/)
-[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white)](http://ashikurrahamanahad.website2.me/)
 
 ---
 
